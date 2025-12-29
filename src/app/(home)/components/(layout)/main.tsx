@@ -15,7 +15,7 @@ export default function MainComponent({ children }: { children: React.ReactNode 
         <TopLayout onSideBarToggle={() => setIsSidebarVisible(!isSidebarVisible)} />
         <div className="flex flex-1">
           <Sidebar isVisible={isSidebarVisible} />
-          <div className={`${isSidebarVisible ? "ml-56" : ""} flex-1`}>{children}</div>
+          <div className="relative flex justify-center mt-8 sm:mt-20 w-full overflow-hidden">{children}</div>
         </div>
         <Footer />
       </GlobalContextProvider>

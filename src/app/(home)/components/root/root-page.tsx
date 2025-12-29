@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useEffect, useState } from "react";
 import ArtBoard from "./art-board";
@@ -8,6 +8,10 @@ import MapInfo from "./map-info";
 import Loading from "../../loading";
 import { IConfig } from "@/src/app/api/config/route";
 
+export interface IImages {
+  [folderName: string]: string[];
+}
+
 const RootPage = () => {
   const [config, setConfig] = useState<IConfig | null>(null);
   useEffect(() => {
@@ -16,13 +20,20 @@ const RootPage = () => {
       .then((data) => setConfig(data.config));
   }, []);
 
-  if(!config) return <Loading/>
+  const [images, setImages] = useState<IImages | null>(null);
+  useEffect(() => {
+    fetch("/api/images")
+      .then((res) => res.json())
+      .then((data) => setImages(data.images as IImages));
+  }, []);
+
+  if (!images || !config) return <Loading />;
 
   return (
-    <div className="flex flex-col justify-center">
+    <div className="flex flex-col justify-center w-full">
       <DaisyCountdown config={config} />
-      <ArtBoard />
-      <FullBleedCarousel />
+      <ArtBoard images={images} />
+      <FullBleedCarousel images={images} />
       <MapInfo />
     </div>
   );
