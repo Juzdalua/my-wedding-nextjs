@@ -9,12 +9,6 @@ export const metadata: Metadata = {
 const Start = async () => {
   return (
     <div>
-      {/* <Suspense fallback={<h1>Loading User List...</h1>}>
-          <UserList />
-        </Suspense>
-        <Suspense fallback={<h1>Loading User List...</h1>}>
-          <UserInfo id="1" />
-        </Suspense> */}
       <Suspense fallback={""}>
         <RootPage />
       </Suspense>

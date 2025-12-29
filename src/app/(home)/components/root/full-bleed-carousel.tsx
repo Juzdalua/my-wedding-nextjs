@@ -1,7 +1,8 @@
 "use client";
 
 const FullBleedCarousel = () => {
-  const images = JSON.parse(process.env.NEXT_PUBLIC_CAROUSEL_IMAGES);
+  // const images = JSON.parse(process.env.NEXT_PUBLIC_CAROUSEL_IMAGES);
+  const images = JSON.parse('[]');
   const count = images.length;
 
   return (

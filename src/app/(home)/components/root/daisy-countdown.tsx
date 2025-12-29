@@ -1,5 +1,6 @@
 "use client";
 
+import { IConfig } from "@/src/app/api/config/route";
 import { useEffect, useState } from "react";
 
 const ConvertStringDay = (day: number) => {
@@ -40,13 +41,17 @@ const ConvertFullStringDay = (day: number) => {
   }
 };
 
-const DaisyCountdown = () => {
+interface DaisyCountdownProps{
+  config: IConfig
+}
+
+const DaisyCountdown = ({config}: DaisyCountdownProps) => {
   const [targetDateTime, setTargetDateTime] = useState<number | null>(null);
   const [remainingTime, setRemainingTime] = useState<number | null>(null);
 
   useEffect(() => {
-    const date = process.env.NEXT_PUBLIC_HOME_DDAY_DATE;
-    const time = process.env.NEXT_PUBLIC_HOME_DDAY_TIME;
+    const date = config["DDAY_DATE"]
+    const time = config["DDAY_TIME"]
 
     const targetDate = new Date(`${date}T${time}:00`);
     setTargetDateTime(targetDate.getTime());
