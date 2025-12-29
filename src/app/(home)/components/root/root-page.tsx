@@ -34,7 +34,7 @@ const RootPage = () => {
       <DaisyCountdown config={config} />
       <ArtBoard images={images} />
       <FullBleedCarousel images={images} />
-      <MapInfo images={images}/>
+      <MapInfo config={config} images={images}/>
     </div>
   );
 };

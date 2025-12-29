@@ -15,17 +15,8 @@ const TopLayout = ({ onSideBarToggle }: { onSideBarToggle: () => void }) => {
       {/* Right */}
       <div className="flex w-full justify-end">
         <ul className="menu menu-horizontal content-center">
-          {/* <li>
-            <Link href={`/kcp`}>KCP</Link>
-          </li> */}
           <li>
             <Link href={`/pay-letter`}>Pay-Letter</Link>
-          </li>
-          <li>
-            <Link href={`/stripe`}>Stripe</Link>
-          </li>
-          <li>
-            <Link href={`/supabase`}>Supabase</Link>
           </li>
           <li>
             <Link href={`/`}>Home</Link>
@@ -43,21 +34,6 @@ const TopLayout = ({ onSideBarToggle }: { onSideBarToggle: () => void }) => {
               Disconnect
             </Link>
           </li>
-          {/* <li>
-            <Link href={`/auth/signin`} className={token ? "hidden" : ""}>
-              Signin
-            </Link>
-          </li>
-          <li>
-            <Link href={`/auth/signup`} className={token ? "hidden" : ""}>
-              Signup
-            </Link>
-          </li>
-          <li>
-            <Link href={`/auth/logout`} className={!token ? "hidden" : ""}>
-              Logout
-            </Link>
-          </li> */}
         </ul>
       </div>
     </div>

@@ -48,10 +48,10 @@ interface DaisyCountdownProps {
 const DaisyCountdown = ({ config }: DaisyCountdownProps) => {
   const [targetDateTime, setTargetDateTime] = useState<number | null>(null);
   const [remainingTime, setRemainingTime] = useState<number | null>(null);
+  const date = config["DDAY_DATE"];
+  const time = config["DDAY_TIME"];
 
   useEffect(() => {
-    const date = config["DDAY_DATE"];
-    const time = config["DDAY_TIME"];
 
     const targetDate = new Date(`${date}T${time}:00`);
     setTargetDateTime(targetDate.getTime());
@@ -81,16 +81,16 @@ const DaisyCountdown = ({ config }: DaisyCountdownProps) => {
   return (
     <div className="flex flex-col justify-center items-center mt-24 text-[#3A3A3A]">
       <div className="text-lg mb-8 tracking-wide opacity-80">
-        {`${process.env.NEXT_PUBLIC_HOME_DDAY_DATE?.split("-")[0]}.${
-          process.env.NEXT_PUBLIC_HOME_DDAY_DATE?.split("-")[1]
+        {`${date?.split("-")[0]}.${
+          date?.split("-")[1]
         }.${
-          process.env.NEXT_PUBLIC_HOME_DDAY_DATE?.split("-")[2]
+          date?.split("-")[2]
         }. ${ConvertStringDay(
           new Date(
-            `${process.env.NEXT_PUBLIC_HOME_DDAY_DATE}T${process.env.NEXT_PUBLIC_HOME_DDAY_TIME}:00`
+            `${date}T${time}:00`
           ).getDay()
-        )} ${process.env.NEXT_PUBLIC_HOME_DDAY_TIME?.split(":")[0]}:${
-          process.env.NEXT_PUBLIC_HOME_DDAY_TIME?.split(":")[1]
+        )} ${time?.split(":")[0]}:${
+          time?.split(":")[1]
         }`}
       </div>
 
