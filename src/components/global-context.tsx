@@ -1,3 +1,5 @@
+"use client"
+
 import LocalStorage from "@/src/utils/LocalStorage";
 import React, { useState, createContext, useContext, useEffect } from "react";
 

@@ -1,9 +1,11 @@
 import { Metadata } from "next";
 import PayLetterResultComponent from "./components/result";
 
-export const metadata: Metadata = {
-  title: "Pay-Letter | Result",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "Result", 
+  };
+}
 
 const PayLetterResultPage = () => {
   return (

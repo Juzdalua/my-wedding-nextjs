@@ -4,9 +4,11 @@ import Streaming from "./components/streaming";
 import ChatBox from "./components/chat-box";
 import ChatInput from "./components/chat-input";
 
-export const metadata: Metadata = {
-  title: "Room",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "Room", 
+  };
+}
 
 const Room = () => {
   return (

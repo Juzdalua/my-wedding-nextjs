@@ -2,9 +2,11 @@ import ConnectForm from "@/src/app/auth/components/connectform";
 import { ConnectType } from "@/src/interfaces/auth/IConnectform";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Connect",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "Connect", 
+  };
+}
 
 const ConnectPage = () => {
   const connectData = {
