@@ -8,7 +8,7 @@ interface ArtBoardProps {
 }
 
 const ArtBoard = ({ images }: ArtBoardProps) => {
-  if (!images) return <Loading />;
+  if (!images || !images.main || images.main.length === 0)return <Loading />;
 
   return (
     <div className="flex justify-center px-4">

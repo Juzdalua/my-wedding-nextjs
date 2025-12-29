@@ -11,7 +11,7 @@ interface CarouselProps {
 const FullBleedCarousel = ({ images }: CarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  if (!images) return <Loading />;
+  if (!images || !images.carousel || images.carousel.length === 0) return <Loading />;
 
   const length = images.carousel.length;
 
