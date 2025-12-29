@@ -9,14 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        mono: ['MesloLGS', 'Menlo', 'monospace'],
+        serif: ['"Noto Serif KR"', "serif"],
       },
     },
   },
   daisyui: {
-    themes: [
-      "dark",
-    ],
+    themes: false,
   },
   plugins: [require("daisyui")],
 };

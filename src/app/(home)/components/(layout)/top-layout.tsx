@@ -8,7 +8,7 @@ const TopLayout = ({ onSideBarToggle }: { onSideBarToggle: () => void }) => {
   const { token, setToken } = useGlobalContext();
 
   return (
-    <div className="min-h-20 bg-neutral flex justify-between">
+    <div className="h-20 flex items-center justify-between px-6 bg-white/70 backdrop-blur-sm">
       {/* Left */}
       {/* <ToggleHambugerButton onSideBarToggle={onSideBarToggle} /> */}
 

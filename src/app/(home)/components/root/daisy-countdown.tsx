@@ -72,41 +72,49 @@ const DaisyCountdown = () => {
   const seconds = Math.floor((absRemainingTime / 1000) % 60);
 
   return (
-    <div className="flex flex-col justify-center items-center mt-20">
-      <div className="text-xl mb-5">
-        {`${process.env.NEXT_PUBLIC_HOME_DDAY_DATE?.split("-")[0]}.${process.env.NEXT_PUBLIC_HOME_DDAY_DATE?.split("-")[1]}.${
+    <div className="flex flex-col justify-center items-center mt-24 text-[#3A3A3A]">
+      <div className="text-lg mb-8 tracking-wide opacity-80">
+        {`${process.env.NEXT_PUBLIC_HOME_DDAY_DATE?.split("-")[0]}.${
+          process.env.NEXT_PUBLIC_HOME_DDAY_DATE?.split("-")[1]
+        }.${
           process.env.NEXT_PUBLIC_HOME_DDAY_DATE?.split("-")[2]
-        }. ${ConvertStringDay(new Date(`${process.env.NEXT_PUBLIC_HOME_DDAY_DATE}T${process.env.NEXT_PUBLIC_HOME_DDAY_TIME}:00`).getDay())} ${
-          process.env.NEXT_PUBLIC_HOME_DDAY_TIME?.split(":")[0]
-        }:${process.env.NEXT_PUBLIC_HOME_DDAY_TIME?.split(":")[1]}`}
+        }. ${ConvertStringDay(
+          new Date(
+            `${process.env.NEXT_PUBLIC_HOME_DDAY_DATE}T${process.env.NEXT_PUBLIC_HOME_DDAY_TIME}:00`
+          ).getDay()
+        )} ${process.env.NEXT_PUBLIC_HOME_DDAY_TIME?.split(":")[0]}:${
+          process.env.NEXT_PUBLIC_HOME_DDAY_TIME?.split(":")[1]
+        }`}
       </div>
-      <div className="grid grid-flow-col gap-5 text-center auto-cols-max">
-        <div className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-          <div className="flex flex-col items-center align-middle font-mono ">
+      <div className="grid grid-flow-col gap-6 text-center auto-cols-max">
+        <div className="flex flex-col px-4 py-3 bg-white/70 backdrop-blur-sm rounded-xl">
+          <div className="flex flex-col items-center align-middle font-serif">
             <span className="text-5xl">{days}</span>
             days
           </div>
         </div>
-        <div className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-          <span className="countdown font-mono text-5xl">
+        <div className="flex flex-col px-4 py-3 bg-white/70 backdrop-blur-sm rounded-xl">
+          <span className="countdown font-serif text-4xl">
             <span style={{ "--value": hours } as React.CSSProperties}></span>
           </span>
           hours
         </div>
-        <div className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-          <span className="countdown font-mono text-5xl">
+        <div className="flex flex-col px-4 py-3 bg-white/70 backdrop-blur-sm rounded-xl">
+          <span className="countdown font-serif text-4xl">
             <span style={{ "--value": minutes } as React.CSSProperties}></span>
           </span>
           min
         </div>
-        <div className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-          <span className="countdown font-mono text-5xl">
+        <div className="flex flex-col px-4 py-3 bg-white/70 backdrop-blur-sm rounded-xl">
+          <span className="countdown font-serif text-4xl">
             <span style={{ "--value": seconds } as React.CSSProperties}></span>
           </span>
           sec
         </div>
       </div>
-      <div className="text-2xl mt-4 font-bold">{isPast ? `D+${days}` : `D-${days}`}</div>
+      <div className="text-xl mt-8 tracking-wide font-medium text-[#E8A0A0]">
+        {isPast ? `D+${days}` : `D-${days}`}
+      </div>
     </div>
   );
 };
