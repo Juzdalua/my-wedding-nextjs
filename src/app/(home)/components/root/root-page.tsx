@@ -14,14 +14,12 @@ export interface IImages {
 
 const RootPage = () => {
   const [config, setConfig] = useState<IConfig | null>(null);
+  const [images, setImages] = useState<IImages | null>(null);
   useEffect(() => {
     fetch("/api/config")
       .then((res) => res.json())
       .then((data) => setConfig(data.config));
-  }, []);
 
-  const [images, setImages] = useState<IImages | null>(null);
-  useEffect(() => {
     fetch("/api/images")
       .then((res) => res.json())
       .then((data) => setImages(data.images as IImages));
@@ -30,11 +28,11 @@ const RootPage = () => {
   if (!images || !config) return <Loading />;
 
   return (
-    <div className="flex flex-col justify-center w-full">
+    <div className="flex flex-col items-center w-full space-y-12 pb-10">
       <DaisyCountdown config={config} />
       <ArtBoard images={images} />
       <FullBleedCarousel images={images} />
-      <MapInfo config={config} images={images}/>
+      <MapInfo config={config} images={images} />
     </div>
   );
 };

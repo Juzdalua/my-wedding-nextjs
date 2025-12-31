@@ -79,63 +79,31 @@ const DaisyCountdown = ({ config }: DaisyCountdownProps) => {
   const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
 
   return (
-    <div className="flex flex-col justify-center items-center mt-24 text-[#3A3A3A]">
-      <div className="text-lg mb-8 tracking-wide opacity-80">
-        {`${date?.split("-")[0]}.${
-          date?.split("-")[1]
-        }.${
-          date?.split("-")[2]
-        }. ${ConvertStringDay(
-          new Date(
-            `${date}T${time}:00`
-          ).getDay()
-        )} ${time?.split(":")[0]}:${
-          time?.split(":")[1]
-        }`}
+    <div className="flex flex-col justify-center items-center mt-10 text-[#3A3A3A] w-full">
+      {/* 상단 예식 날짜 정보 */}
+      <div className="text-base sm:text-lg mb-6 tracking-[0.2em] font-serif opacity-70">
+        {/* 날짜 변환 로직 동일 */}
+        {date?.replace(/-/g, ".")} {ConvertStringDay(new Date(`${date}T${time}:00`).getDay())} {time}
       </div>
 
-      <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-center">
-        <div className="flex flex-col px-3 py-2 sm:px-4 sm:py-3 bg-white/70 backdrop-blur-sm rounded-xl">
-          <div className="flex flex-col items-center align-middle font-serif">
-            <span className="text-5xl">{days}</span>
-            days
+      {/* 카운트다운 박스 */}
+      <div className="flex flex-wrap justify-center gap-2 sm:gap-4 text-center">
+        {[
+          { label: "days", value: days, isRaw: true },
+          { label: "hours", value: hours },
+          { label: "min", value: minutes },
+          { label: "sec", value: seconds },
+        ].map((item, idx) => (
+          <div key={idx} className="flex flex-col min-w-[70px] px-2 py-3 bg-white/60 backdrop-blur-sm rounded-2xl shadow-sm border border-white/50">
+            <span className="font-serif text-3xl sm:text-4xl text-[#3A3A3A]">
+              {item.isRaw ? item.value : <span className="countdown"><span style={{ "--value": item.value } as any}></span></span>}
+            </span>
+            <span className="text-[10px] uppercase tracking-widest mt-1 opacity-50">{item.label}</span>
           </div>
-        </div>
-
-        {isMobile && <div className="w-full h-0"></div>}
-
-        <div className="flex flex-col px-3 py-2 sm:px-4 sm:py-3 bg-white/70 backdrop-blur-sm rounded-xl">
-          <span className="countdown font-serif text-2xl sm:text-3xl md:text-4xl">
-            <span
-              className="text-5xl"
-              style={{ "--value": hours } as React.CSSProperties}
-            ></span>
-          </span>
-          hours
-        </div>
-
-        <div className="flex flex-col px-3 py-2 sm:px-4 sm:py-3 bg-white/70 backdrop-blur-sm rounded-xl">
-          <span className="countdown font-serif text-2xl sm:text-3xl md:text-4xl">
-            <span
-              className="text-5xl"
-              style={{ "--value": minutes } as React.CSSProperties}
-            ></span>
-          </span>
-          min
-        </div>
-
-        <div className="flex flex-col px-3 py-3 sm:px-4 sm:py-4 bg-white/70 backdrop-blur-sm rounded-xl">
-          <span className="countdown font-serif text-2xl sm:text-3xl md:text-4xl">
-            <span
-              className="text-5xl"
-              style={{ "--value": seconds } as React.CSSProperties}
-            ></span>
-          </span>
-          sec
-        </div>
+        ))}
       </div>
 
-      <div className="text-xl mt-8 tracking-wide font-medium text-[#E8A0A0]">
+      <div className="text-lg mt-8 tracking-[0.3em] font-serif text-[#E8A0A0]">
         {isPast ? `D+${days}` : `D-${days}`}
       </div>
     </div>

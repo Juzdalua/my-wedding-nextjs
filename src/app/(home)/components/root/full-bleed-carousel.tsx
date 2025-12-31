@@ -11,7 +11,8 @@ interface CarouselProps {
 const FullBleedCarousel = ({ images }: CarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  if (!images || !images.carousel || images.carousel.length === 0) return <Loading />;
+  if (!images || !images.carousel || images.carousel.length === 0)
+    return <Loading />;
 
   const length = images.carousel.length;
 
@@ -19,42 +20,46 @@ const FullBleedCarousel = ({ images }: CarouselProps) => {
   const nextSlide = () => setCurrentIndex((currentIndex + 1) % length);
 
   return (
-    <div className="relative w-full mt-8 sm:mt-20 overflow-hidden">
-      {/* 이전 버튼 */}
-      <button
-        className="absolute top-1/2 -translate-y-1/2 left-4 sm:left-6 z-10 bg-white/70 p-2 rounded"
-        onClick={prevSlide}
+    <div className="relative w-full overflow-hidden rounded-3xl group">
+      <div
+        className="flex transition-transform duration-700 ease-in-out"
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
-        ◀
-      </button>
-
-      {/* carousel wrapper */}
-      <div className="w-full max-w-4xl mx-auto overflow-hidden">
-        <div
-          className="flex transition-transform duration-500"
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-        >
-          {images.carousel.map((src, index) => (
-            <div
-              key={index}
-              className="flex-shrink-0 w-full flex justify-center"
-            >
-              <img
-                src={src}
-                className="w-full h-auto object-contain rounded-md"
-              />
-            </div>
-          ))}
-        </div>
+        {images.carousel.map((src, index) => (
+          <div key={index} className="flex-shrink-0 w-full px-1">
+            <img
+              src={src}
+              className="w-full h-auto object-cover rounded-2xl shadow-inner"
+            />
+          </div>
+        ))}
       </div>
 
-      {/* 다음 버튼 */}
+      {/* 화살표 버튼 커스텀 */}
       <button
-        className="absolute top-1/2 -translate-y-1/2 right-4 sm:right-6 z-10 bg-white/70 p-2 rounded"
+        className="absolute left-4 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white/40 backdrop-blur-md rounded-full text-[#3A3A3A] opacity-0 group-hover:opacity-100 transition-opacity"
+        onClick={prevSlide}
+      >
+        <span className="text-xs">〈</span>
+      </button>
+      <button
+        className="absolute right-4 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white/40 backdrop-blur-md rounded-full text-[#3A3A3A] opacity-0 group-hover:opacity-100 transition-opacity"
         onClick={nextSlide}
       >
-        ▶
+        <span className="text-xs">〉</span>
       </button>
+
+      {/* 인디케이터 (점) 추가 */}
+      <div className="flex justify-center gap-1.5 mt-4">
+        {images.carousel.map((_, i) => (
+          <div
+            key={i}
+            className={`h-1 rounded-full transition-all ${
+              currentIndex === i ? "w-4 bg-[#3A3A3A]" : "w-1 bg-[#3A3A3A]/20"
+            }`}
+          />
+        ))}
+      </div>
     </div>
   );
 };
