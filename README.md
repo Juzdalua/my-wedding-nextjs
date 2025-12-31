@@ -1,3 +1,9 @@
+Link[https://my-wedding-nextjs-18gi.vercel.app/]
+
+```bash
+rm -rf .next && npm run build
+```
+
 # Init Next.js
 
 ```
