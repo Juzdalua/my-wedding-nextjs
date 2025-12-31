@@ -3,7 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
-export const PayLetterResultComponent = async () => {
+export const PayLetterResultComponent = () => {
   useEffect(() => {}, []);
   const searchParams = useSearchParams();
   console.log(searchParams);
